@@ -2291,7 +2291,9 @@ def ensure_index_screen(log_prefix: str, max_attempts: int = 6) -> bool:
             level=logging.INFO,
         )
         if score >= NAV_INDEX_THRESHOLD:
-            log(f"{log_prefix} 导航：已定位到索引界面。")
+            log(f"{log_prefix} 导航：已定位到索引界面，按ESC进入主菜单。")
+            _press_escape()
+            time.sleep(0.6)
             return True
         _press_escape()
         time.sleep(0.6)
@@ -2331,10 +2333,11 @@ def navigate_fragment_entry(
 ) -> bool:
     if not _prepare_navigation_env(log_prefix):
         return False
+    if has_direct_entry_context(log_prefix, (ENTRY_MODE_LETTER,)):
+        return True
     if not ensure_index_screen(log_prefix):
         return False
-    _press_escape()
-    time.sleep(0.4)
+    # ensure_index_screen已经按过ESC进入主菜单，直接开始导航
     steps = [
         (NAV_TRAINING_TEMPLATE, "点击历练", 25.0, 0.72),
         (NAV_LETTER_TEMPLATE, "点击密函", 25.0, 0.72),
@@ -2348,10 +2351,11 @@ def navigate_fragment_entry(
 def navigate_clue_entry(log_prefix: str, level_template: str, level_desc: str) -> bool:
     if not _prepare_navigation_env(log_prefix):
         return False
+    if has_direct_entry_context(log_prefix, (ENTRY_MODE_START,)):
+        return True
     if not ensure_index_screen(log_prefix):
         return False
-    _press_escape()
-    time.sleep(0.4)
+    # ensure_index_screen已经按过ESC进入主菜单，直接开始导航
     steps = [
         (NAV_TRAINING_TEMPLATE, "点击历练", 25.0, 0.72),
         (NAV_ENTRUST_TEMPLATE, "点击委托", 25.0, 0.72),
@@ -2366,11 +2370,11 @@ def navigate_firework_entry(log_prefix: str) -> bool:
     """Navigate to the Saiqi fireworks/weapon breakthrough entrance."""
     if not _prepare_navigation_env(log_prefix):
         return False
+    if has_direct_entry_context(log_prefix, (ENTRY_MODE_START, ENTRY_MODE_LETTER)):
+        return True
     if not ensure_index_screen(log_prefix):
         return False
-
-    _press_escape()
-    time.sleep(0.4)
+    # ensure_index_screen已经按过ESC进入主菜单，直接开始导航
 
     steps = [
         (NAV_TRAINING_TEMPLATE, "点击历练", 25.0, 0.72),
@@ -2388,9 +2392,7 @@ def navigate_wq70_entry(log_prefix: str) -> bool:
         return True
     if not ensure_index_screen(log_prefix):
         return False
-
-    _press_escape()
-    time.sleep(0.4)
+    # ensure_index_screen已经按过ESC进入主菜单，直接开始导航
 
     steps = [
         (NAV_TRAINING_TEMPLATE, "点击历练", 25.0, 0.72),
@@ -2405,11 +2407,11 @@ def navigate_xp50_entry(log_prefix: str) -> bool:
     """Navigate to the 50 XP dungeon entrance."""
     if not _prepare_navigation_env(log_prefix):
         return False
+    if has_direct_entry_context(log_prefix, (ENTRY_MODE_START, ENTRY_MODE_LETTER)):
+        return True
     if not ensure_index_screen(log_prefix):
         return False
-
-    _press_escape()
-    time.sleep(0.4)
+    # ensure_index_screen已经按过ESC进入主菜单，直接开始导航
 
     steps = [
         (NAV_TRAINING_TEMPLATE, "点击历练", 25.0, 0.72),
@@ -2483,11 +2485,11 @@ def navigate_hs70_entry(log_prefix: str) -> bool:
     """Navigate to the 70 HS escort route entrance."""
     if not _prepare_navigation_env(log_prefix):
         return False
+    if has_direct_entry_context(log_prefix, (ENTRY_MODE_START, ENTRY_MODE_LETTER)):
+        return True
     if not ensure_index_screen(log_prefix):
         return False
-
-    _press_escape()
-    time.sleep(0.4)
+    # ensure_index_screen已经按过ESC进入主菜单，直接开始导航
 
     initial_steps = [
         (NAV_TRAINING_TEMPLATE, "点击历练", 25.0, 0.72),
