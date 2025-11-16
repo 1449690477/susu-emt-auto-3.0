@@ -2203,7 +2203,9 @@ def wait_and_click_template_from_path(
 
 
 NAV_INDEX_THRESHOLD = 0.7
-NAV_DIRECT_ENTRY_THRESHOLD = 0.75
+NAV_DIRECT_ENTRY_THRESHOLD = 0.4
+NAV_DIRECT_ENTRY_ATTEMPTS = 3
+NAV_DIRECT_ENTRY_RETRY_DELAY = 0.35
 ENTRY_MODE_START = "start"
 ENTRY_MODE_LETTER = "letter"
 
@@ -2246,19 +2248,23 @@ def has_direct_entry_context(log_prefix: str, modes: Iterable[str]) -> bool:
     normalized = _normalize_entry_modes(modes)
     if not _prepare_navigation_env(log_prefix):
         return False
-    for mode in normalized:
-        template_name, desc = DIRECT_ENTRY_OPTIONS[mode]
-        score, _, _ = match_template(template_name)
-        log(
-            f"{log_prefix} 导航：优先检测 {desc} 匹配度 {score:.3f}",
-            level=logging.INFO,
-        )
-        if score >= NAV_DIRECT_ENTRY_THRESHOLD:
+    for attempt in range(1, NAV_DIRECT_ENTRY_ATTEMPTS + 1):
+        if worker_stop.is_set():
+            return False
+        for mode in normalized:
+            template_name, desc = DIRECT_ENTRY_OPTIONS[mode]
+            score, _, _ = match_template(template_name)
             log(
-                f"{log_prefix} 导航：检测到 {desc} 按钮，可直接进入。",
+                f"{log_prefix} 导航：优先检测 {desc} 匹配度 {score:.3f}（第 {attempt}/{NAV_DIRECT_ENTRY_ATTEMPTS} 次检测）",
                 level=logging.INFO,
             )
-            return True
+            if score >= NAV_DIRECT_ENTRY_THRESHOLD:
+                log(
+                    f"{log_prefix} 导航：检测到 {desc} 按钮，可直接进入。",
+                    level=logging.INFO,
+                )
+                return True
+        time.sleep(NAV_DIRECT_ENTRY_RETRY_DELAY)
     return False
 
 
