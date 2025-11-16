@@ -1,0 +1,55 @@
+{
+  "name": "6-2上",
+  "version": "2.0",
+  "created_time": "2025-11-13 13:12:21",
+  "total_time": 4.5809948444366455,
+  "action_count": 8,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "esc",
+      "time": 0.36304688453674316
+    },
+    {
+      "type": "key_up",
+      "key": "esc",
+      "time": 0.46897387504577637
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 1.7359867095947266
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 1.8409905433654785
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 2.4359686374664307
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 2.55202054977417
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 4.47602915763855
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 4.5809948444366455
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 3,
+    "key_presses": 4
+  }
+}

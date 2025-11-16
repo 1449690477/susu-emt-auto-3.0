@@ -1,0 +1,55 @@
+{
+  "name": "8-2上",
+  "version": "2.0",
+  "created_time": "2025-11-13 13:19:06",
+  "total_time": 4.679998159408569,
+  "action_count": 8,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "esc",
+      "time": 0.434009313583374
+    },
+    {
+      "type": "key_up",
+      "key": "esc",
+      "time": 0.5390219688415527
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 1.9690468311309814
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 2.0880260467529297
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 2.8981168270111084
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 3.0052614212036133
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 4.593013763427734
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 4.679998159408569
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 3,
+    "key_presses": 4
+  }
+}

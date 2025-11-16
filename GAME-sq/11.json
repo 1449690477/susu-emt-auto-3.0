@@ -1,0 +1,85 @@
+{
+  "name": "8-4左上右下",
+  "version": "2.0",
+  "created_time": "2025-11-13 13:21:15",
+  "total_time": 5.648085355758667,
+  "action_count": 14,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "esc",
+      "time": 0.6111187934875488
+    },
+    {
+      "type": "key_up",
+      "key": "esc",
+      "time": 0.700066328048706
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 2.221052885055542
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 2.3160083293914795
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 2.992060661315918
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 3.1000092029571533
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 4.496006011962891
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 4.565969944000244
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 4.8960089683532715
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 4.97602105140686
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 5.235059022903442
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 5.312032461166382
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 5.577979564666748
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 5.648085355758667
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 3,
+    "key_presses": 7
+  }
+}

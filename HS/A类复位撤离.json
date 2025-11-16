@@ -1,0 +1,347 @@
+{
+  "name": "A类复位撤离",
+  "version": "2.1",
+  "created_time": "2025-11-15 10:58:53",
+  "total_time": 58.9469051361084,
+  "action_count": 66,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 0.49015116691589355
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 0.8220944404602051
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 1.1270952224731445
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 1.5580997467041016
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 1.79109525680542
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 2.3520541191101074
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 2.560091257095337
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 3.0381147861480713
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 3.7690672874450684
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 3.8591132164001465
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 6.459092140197754
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 7.737997770309448
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 7.866189241409302
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 11.11896538734436
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 11.269046306610107
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 13.511018514633179
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 13.649040222167969
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 13.853018999099731
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 13.983040809631348
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 14.880051136016846
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 14.992106914520264
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 15.154028177261353
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 15.256094455718994
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 15.577032566070557
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 16.439079999923706
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 16.526036262512207
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 17.39002752304077
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 17.626068830490112
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 18.008146047592163
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 18.149022579193115
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 18.41301655769348
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 18.57002329826355
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 18.88913631439209
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 18.973236322402954
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 21.261088132858276
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 21.32908797264099
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 23.9000506401062
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 25.425077199935913
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 25.59309697151184
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 26.001140832901
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 26.27903127670288
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 28.170972108840942
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 28.299070119857788
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 28.395028591156006
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 28.570997714996338
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 29.898004293441772
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 30.01200532913208
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 32.40994691848755
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 32.52598762512207
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 34.78606605529785
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 35.877002239227295
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 36.29901123046875
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 36.76598501205444
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 39.013001441955566
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 39.48996376991272
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 39.56005072593689
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 43.67901086807251
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 43.73696565628052
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 46.07501435279846
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 55.0109167098999
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 55.65693497657776
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 55.83891153335571
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 56.287925004959106
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 57.87894320487976
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 58.8689341545105
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 58.9469051361084
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 6,
+    "key_presses": 66,
+    "mouse_actions": 0,
+    "has_mouse_control": false
+  }
+}

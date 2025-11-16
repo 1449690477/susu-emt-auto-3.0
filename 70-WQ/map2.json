@@ -1,0 +1,107 @@
+{
+  "name": "map2",
+  "version": "2.1",
+  "created_time": "2025-11-13 20:17:12",
+  "total_time": 19.8991916179657,
+  "action_count": 18,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 0.3690776824951172
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 1.143066167831421
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 2.4050915241241455
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 4.089075088500977
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 5.682214736938477
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 7.005067586898804
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 7.665161848068237
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 8.344055652618408
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 9.635068655014038
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 9.8331937789917
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 11.036091566085815
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 11.10813021659851
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 13.669126033782959
+    },
+    {
+      "type": "key_down",
+      "key": "e",
+      "time": 13.918190479278564
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 17.784039974212646
+    },
+    {
+      "type": "key_up",
+      "key": "e",
+      "time": 17.796041250228882
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 19.833051919937134
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 19.8991916179657
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 5,
+    "key_presses": 18,
+    "mouse_actions": 0,
+    "has_mouse_control": false
+  }
+}

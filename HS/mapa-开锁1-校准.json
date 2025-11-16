@@ -1,0 +1,207 @@
+{
+  "name": "mapa-开锁1-校准",
+  "version": "2.1",
+  "created_time": "2025-11-15 11:24:08",
+  "total_time": 19.574093103408813,
+  "action_count": 38,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 1.0650825500488281
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 1.3010785579681396
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 1.6021628379821777
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 1.9051127433776855
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 2.139050006866455
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 2.3800621032714844
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 2.6781017780303955
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 3.0741021633148193
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 3.945157766342163
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 4.014056921005249
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 6.3270440101623535
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 6.521093368530273
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 6.709061145782471
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 8.31903076171875
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 8.50108528137207
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 8.925051927566528
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 9.317054748535156
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 9.6260347366333
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 9.78214430809021
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 9.87601900100708
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 10.016135931015015
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 12.404029130935669
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 12.623059749603271
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 14.144216299057007
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 14.368089437484741
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 14.548006772994995
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 14.69403624534607
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 15.21303939819336
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 15.307008743286133
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 15.499095678329468
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 15.5710289478302
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 16.3640878200531
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 16.48404574394226
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 16.69402289390564
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 17.082026958465576
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 19.249003410339355
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 19.50403881072998
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 19.574093103408813
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 6,
+    "key_presses": 38,
+    "mouse_actions": 0,
+    "has_mouse_control": false
+  }
+}

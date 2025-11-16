@@ -1,0 +1,97 @@
+{
+  "name": "map6-复位",
+  "version": "2.1",
+  "created_time": "2025-11-13 20:39:31",
+  "total_time": 10.821099042892456,
+  "action_count": 16,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 0.7710673809051514
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 0.8470721244812012
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 3.0390851497650146
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 4.626057863235474
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 4.8440468311309814
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 5.887055158615112
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 6.27506947517395
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 7.128038644790649
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 7.5100743770599365
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 7.758100986480713
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 7.857313632965088
+    },
+    {
+      "type": "key_down",
+      "key": "e",
+      "time": 8.192126989364624
+    },
+    {
+      "type": "key_up",
+      "key": "e",
+      "time": 9.07003402709961
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 9.076986074447632
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 10.748081684112549
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 10.821099042892456
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 5,
+    "key_presses": 16,
+    "mouse_actions": 0,
+    "has_mouse_control": false
+  }
+}

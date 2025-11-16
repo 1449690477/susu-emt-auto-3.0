@@ -1,0 +1,65 @@
+{
+  "name": "6-4上",
+  "version": "2.0",
+  "created_time": "2025-11-13 13:08:22",
+  "total_time": 5.358989238739014,
+  "action_count": 10,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "esc",
+      "time": 0.44400978088378906
+    },
+    {
+      "type": "key_up",
+      "key": "esc",
+      "time": 0.5589897632598877
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 2.0340261459350586
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 2.1199588775634766
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 2.772996664047241
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 2.8660874366760254
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 4.235396146774292
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 4.315957069396973
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 5.2919511795043945
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 5.358989238739014
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 3,
+    "key_presses": 5
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "name": "map1",
+  "version": "2.1",
+  "created_time": "2025-11-13 20:08:43",
+  "total_time": 21.22402548789978,
+  "action_count": 20,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 0.726151704788208
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 4.543108224868774
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 4.765108108520508
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 5.816069602966309
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 6.3340675830841064
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 7.451033115386963
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 7.4864678382873535
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 7.649076223373413
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 8.864114046096802
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 8.95404577255249
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 9.921088457107544
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 9.97905421257019
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 12.613064527511597
+    },
+    {
+      "type": "key_down",
+      "key": "e",
+      "time": 12.911084651947021
+    },
+    {
+      "type": "key_up",
+      "key": "e",
+      "time": 17.770046949386597
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 17.789066791534424
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 18.678038358688354
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 18.756033420562744
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 20.375044584274292
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 21.22402548789978
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 5,
+    "key_presses": 20,
+    "mouse_actions": 0,
+    "has_mouse_control": false
+  }
+}

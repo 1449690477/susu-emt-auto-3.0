@@ -1,0 +1,327 @@
+{
+  "name": "B类复位撤离",
+  "version": "2.1",
+  "created_time": "2025-11-15 12:01:49",
+  "total_time": 38.88195610046387,
+  "action_count": 62,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 0.5380675792694092
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 0.7690713405609131
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 1.1771042346954346
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 1.3331127166748047
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 1.7430477142333984
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 1.933025598526001
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 2.3341219425201416
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 2.5441031455993652
+    },
+    {
+      "type": "key_down",
+      "key": "ctrl",
+      "time": 3.063053607940674
+    },
+    {
+      "type": "key_up",
+      "key": "ctrl",
+      "time": 3.21512508392334
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 4.055055141448975
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 4.122086048126221
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 6.597099542617798
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 7.704925060272217
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 7.856079339981079
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 8.17507553100586
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 8.29938554763794
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 9.112030506134033
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 9.150031328201294
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 9.462080240249634
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 9.744026899337769
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 10.15109634399414
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 10.23502254486084
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 10.557081937789917
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 10.703114032745361
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 11.33902883529663
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 11.419070720672607
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 12.765017032623291
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 13.035059213638306
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 13.185030937194824
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 13.317107915878296
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 14.068909883499146
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 14.300011157989502
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 15.158009767532349
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 15.246063709259033
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 15.434997081756592
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 15.507077693939209
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 18.403011083602905
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 18.567030906677246
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 18.87114930152893
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 18.981050491333008
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 19.46206045150757
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 19.902056455612183
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 19.958048820495605
+    },
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 24.344018697738647
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 24.40208649635315
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 26.765994548797607
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 32.88889741897583
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 33.05099868774414
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 33.260108947753906
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 33.462048292160034
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 34.010029554367065
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 34.519225120544434
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 36.818970918655396
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 36.99097943305969
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 37.103949546813965
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 37.228962421417236
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 37.85609197616577
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 38.06994915008545
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 38.209959745407104
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 38.46810817718506
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 38.88195610046387
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 7,
+    "key_presses": 62,
+    "mouse_actions": 0,
+    "has_mouse_control": false
+  }
+}

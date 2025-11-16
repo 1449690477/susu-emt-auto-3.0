@@ -1,0 +1,65 @@
+{
+  "name": "8-4正向",
+  "version": "2.0",
+  "created_time": "2025-11-13 13:02:25",
+  "total_time": 6.896046876907349,
+  "action_count": 10,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "esc",
+      "time": 0.8340139389038086
+    },
+    {
+      "type": "key_up",
+      "key": "esc",
+      "time": 0.9430787563323975
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 2.3120529651641846
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 2.4310355186462402
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 3.132052183151245
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 3.2311108112335205
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 5.359081268310547
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 5.439128160476685
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 6.80807089805603
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 6.896046876907349
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 3,
+    "key_presses": 5
+  }
+}

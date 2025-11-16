@@ -1,0 +1,167 @@
+{
+  "name": "mapb-3撤离",
+  "version": "2.1",
+  "created_time": "2025-11-10 10:40:07",
+  "total_time": 17.62682342529297,
+  "action_count": 30,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "q",
+      "time": 0.6669387817382812
+    },
+    {
+      "type": "key_up",
+      "key": "q",
+      "time": 0.7411675453186035
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 3.480391025543213
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 4.8789167404174805
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 5.463167190551758
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 5.915546178817749
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 6.571173906326294
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 7.264152526855469
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 7.531768083572388
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 7.966222763061523
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 8.290735244750977
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 12.299607038497925
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 12.920835018157959
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 14.401612520217896
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 14.493884563446045
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 14.974188804626465
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 15.094740629196167
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 15.249510526657104
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 15.362369775772095
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 15.492388248443604
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 15.578580141067505
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 16.44734477996826
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 16.54980707168579
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 16.718387365341187
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 16.869962692260742
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 17.14655590057373
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 17.239819288253784
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 17.37806224822998
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 17.517805337905884
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 17.62682342529297
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 6,
+    "key_presses": 30,
+    "mouse_actions": 0,
+    "has_mouse_control": false
+  }
+}

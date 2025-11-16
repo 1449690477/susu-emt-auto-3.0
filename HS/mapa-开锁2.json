@@ -1,0 +1,97 @@
+{
+  "name": "mapa-开锁2",
+  "version": "2.1",
+  "created_time": "2025-11-15 10:54:32",
+  "total_time": 4.4549877643585205,
+  "action_count": 16,
+  "pause_duration": 0,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 0.8040447235107422
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 0.9380791187286377
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 1.1490504741668701
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 1.4300501346588135
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 1.6950454711914062
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 1.7990477085113525
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 2.0170211791992188
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 2.3050193786621094
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 2.606055736541748
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 2.6770222187042236
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 2.8260724544525146
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 2.948014736175537
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 4.217013835906982
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 4.289015769958496
+    },
+    {
+      "type": "key_down",
+      "key": "f",
+      "time": 4.377077102661133
+    },
+    {
+      "type": "key_up",
+      "key": "f",
+      "time": 4.4549877643585205
+    }
+  ],
+  "metadata": {
+    "play_speed": 1.0,
+    "unique_keys": 4,
+    "key_presses": 16,
+    "mouse_actions": 0,
+    "has_mouse_control": false
+  }
+}
