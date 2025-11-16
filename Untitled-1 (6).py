@@ -2202,6 +2202,44 @@ def wait_and_click_template_from_path(
 
 
 NAV_INDEX_THRESHOLD = 0.7
+NAV_DIRECT_ENTRY_THRESHOLD = 0.75
+
+
+def _press_escape():
+    """Send an ESC key event if available."""
+    try:
+        if keyboard is not None:
+            keyboard.press_and_release("esc")
+        elif pyautogui is not None:
+            pyautogui.press("esc")
+        else:
+            log("无法发送 ESC：缺少 keyboard/pyautogui。", level=logging.ERROR)
+            return False
+    except Exception as exc:
+        log(f"发送 ESC 失败：{exc}", level=logging.ERROR)
+        return False
+    return True
+
+
+def _has_direct_entry_buttons(log_prefix: str) -> bool:
+    """Check whether we are already at the start/letter selection screens."""
+    direct_templates = [
+        (HS_START_TEMPLATE, "开始挑战"),
+        (BTN_OPEN_LETTER, "选择密函"),
+    ]
+    for template_name, desc in direct_templates:
+        score, _, _ = match_template(template_name)
+        log(
+            f"{log_prefix} 导航：优先检测 {desc} 匹配度 {score:.3f}",
+            level=logging.INFO,
+        )
+        if score >= NAV_DIRECT_ENTRY_THRESHOLD:
+            log(
+                f"{log_prefix} 导航：检测到 {desc} 按钮，跳过索引导航。",
+                level=logging.INFO,
+            )
+            return True
+    return False
 
 
 def _prepare_navigation_env(log_prefix: str) -> bool:
@@ -2315,6 +2353,8 @@ def navigate_wq70_entry(log_prefix: str) -> bool:
     """Navigate to the 70-weapon breakthrough entrance."""
     if not _prepare_navigation_env(log_prefix):
         return False
+    if _has_direct_entry_buttons(log_prefix):
+        return True
     if not ensure_index_screen(log_prefix):
         return False
 
