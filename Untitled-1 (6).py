@@ -25,7 +25,7 @@ import subprocess
 from pathlib import Path
 from ctypes import wintypes
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, Iterable, List, Optional, Tuple
 from collections import deque
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog
@@ -2202,6 +2202,75 @@ def wait_and_click_template_from_path(
 
 
 NAV_INDEX_THRESHOLD = 0.7
+NAV_DIRECT_ENTRY_THRESHOLD = 0.75
+ENTRY_MODE_START = "start"
+ENTRY_MODE_LETTER = "letter"
+
+
+def _press_escape():
+    """Send an ESC key event if available."""
+    try:
+        if keyboard is not None:
+            keyboard.press_and_release("esc")
+        elif pyautogui is not None:
+            pyautogui.press("esc")
+        else:
+            log("无法发送 ESC：缺少 keyboard/pyautogui。", level=logging.ERROR)
+            return False
+    except Exception as exc:
+        log(f"发送 ESC 失败：{exc}", level=logging.ERROR)
+        return False
+    return True
+
+
+DIRECT_ENTRY_OPTIONS = {
+    ENTRY_MODE_START: (HS_START_TEMPLATE, "开始挑战"),
+    ENTRY_MODE_LETTER: (BTN_OPEN_LETTER, "选择密函"),
+}
+
+
+def _normalize_entry_modes(modes: Iterable[str]) -> Tuple[str, ...]:
+    if isinstance(modes, str):
+        modes = (modes,)
+    try:
+        normalized = tuple(mode for mode in modes if mode in DIRECT_ENTRY_OPTIONS)
+    except TypeError:
+        normalized = ()
+    if not normalized:
+        return (ENTRY_MODE_START,)
+    return normalized
+
+
+def has_direct_entry_context(log_prefix: str, modes: Iterable[str]) -> bool:
+    normalized = _normalize_entry_modes(modes)
+    if not _prepare_navigation_env(log_prefix):
+        return False
+    for mode in normalized:
+        template_name, desc = DIRECT_ENTRY_OPTIONS[mode]
+        score, _, _ = match_template(template_name)
+        log(
+            f"{log_prefix} 导航：优先检测 {desc} 匹配度 {score:.3f}",
+            level=logging.INFO,
+        )
+        if score >= NAV_DIRECT_ENTRY_THRESHOLD:
+            log(
+                f"{log_prefix} 导航：检测到 {desc} 按钮，可直接进入。",
+                level=logging.INFO,
+            )
+            return True
+    return False
+
+
+def should_navigate_for_entry(log_prefix: str, modes: Iterable[str]) -> bool:
+    normalized = _normalize_entry_modes(modes)
+    if has_direct_entry_context(log_prefix, normalized):
+        return False
+    option_desc = " 或 ".join(DIRECT_ENTRY_OPTIONS[m][1] for m in normalized)
+    log(
+        f"{log_prefix} 导航：未检测到 {option_desc}，准备执行自动导航。",
+        level=logging.INFO,
+    )
+    return True
 
 
 def _prepare_navigation_env(log_prefix: str) -> bool:
@@ -2315,6 +2384,8 @@ def navigate_wq70_entry(log_prefix: str) -> bool:
     """Navigate to the 70-weapon breakthrough entrance."""
     if not _prepare_navigation_env(log_prefix):
         return False
+    if has_direct_entry_context(log_prefix, (ENTRY_MODE_START, ENTRY_MODE_LETTER)):
+        return True
     if not ensure_index_screen(log_prefix):
         return False
 
@@ -6082,12 +6153,15 @@ class MainGUI:
             return
 
         if hasattr(self, '_recover_via_navigation'):
-            log("[烟花] 开始自动导航到入口")
-            if not self._recover_via_navigation("开始执行"):
-                messagebox.showerror("错误", "无法导航到烟花入口")
-                return
-            log("[烟花] 导航成功")
-            time.sleep(0.5)
+            if should_navigate_for_entry("[烟花]", ENTRY_MODE_START):
+                log("[烟花] 开始自动导航到入口")
+                if not self._recover_via_navigation("开始执行"):
+                    messagebox.showerror("错误", "无法导航到烟花入口")
+                    return
+                log("[烟花] 导航成功")
+                time.sleep(0.5)
+            else:
+                log("[烟花] 检测到入口按钮，跳过自动导航。")
 
         if not round_running_lock.acquire(blocking=False):
             log("已有一轮在运行，本次忽略。")
@@ -6719,6 +6793,7 @@ class MultiLetterSelectionMixin:
 #  探险无尽血清 - 人物碎片自动刷取
 # ======================================================================
 class FragmentFarmGUI(MultiLetterSelectionMixin):
+    ENTRY_MODES: Tuple[str, ...] = (ENTRY_MODE_LETTER,)
     MAX_LETTERS = 20
     multi_toggle_text = "同时刷取多个人物碎片"
     multi_list_title = "人物刷取顺序"
@@ -7789,13 +7864,17 @@ class FragmentFarmGUI(MultiLetterSelectionMixin):
             return
 
         if hasattr(self, '_recover_via_navigation'):
-            log(f"{self.log_prefix} 开始自动导航到入口")
-            if not self._recover_via_navigation("开始执行"):
-                if not from_hotkey:
-                    messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
-                return
-            log(f"{self.log_prefix} 导航成功，准备开始刷取")
-            time.sleep(0.5)
+            entry_modes = getattr(self, "ENTRY_MODES", (ENTRY_MODE_LETTER,))
+            if should_navigate_for_entry(self.log_prefix, entry_modes):
+                log(f"{self.log_prefix} 开始自动导航到入口")
+                if not self._recover_via_navigation("开始执行"):
+                    if not from_hotkey:
+                        messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                    return
+                log(f"{self.log_prefix} 导航成功，准备开始刷取")
+                time.sleep(0.5)
+            else:
+                log(f"{self.log_prefix} 检测到入口按钮，跳过自动导航。")
 
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
@@ -8416,6 +8495,7 @@ class FragmentFarmGUI(MultiLetterSelectionMixin):
 
 class ExpelFragmentGUI(MultiLetterSelectionMixin):
     MAX_LETTERS = 20
+    ENTRY_MODES: Tuple[str, ...] = (ENTRY_MODE_LETTER,)
     multi_toggle_text = "同时刷取多个人物碎片"
     multi_list_title = "驱离刷取顺序"
     multi_item_prefix = "刷取"
@@ -9067,13 +9147,17 @@ class ExpelFragmentGUI(MultiLetterSelectionMixin):
             return
 
         if hasattr(self, '_recover_via_navigation'):
-            log(f"{self.log_prefix} 开始自动导航到入口")
-            if not self._recover_via_navigation("开始执行"):
-                if not from_hotkey:
-                    messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
-                return
-            log(f"{self.log_prefix} 导航成功，准备开始刷取")
-            time.sleep(0.5)
+            entry_modes = getattr(self, "ENTRY_MODES", (ENTRY_MODE_LETTER,))
+            if should_navigate_for_entry(self.log_prefix, entry_modes):
+                log(f"{self.log_prefix} 开始自动导航到入口")
+                if not self._recover_via_navigation("开始执行"):
+                    if not from_hotkey:
+                        messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                    return
+                log(f"{self.log_prefix} 导航成功，准备开始刷取")
+                time.sleep(0.5)
+            else:
+                log(f"{self.log_prefix} 检测到入口按钮，跳过自动导航。")
 
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
@@ -9580,6 +9664,7 @@ class WeaponBlueprintExpelGUI(ExpelFragmentGUI):
 
 
 class ClueFarmGUI(FragmentFarmGUI):
+    ENTRY_MODES: Tuple[str, ...] = (ENTRY_MODE_START,)
     cfg_key = "clue_guard_settings"
     letter_label = "密函"
     product_label = "密函线索"
@@ -10084,13 +10169,17 @@ class ClueFarmGUI(FragmentFarmGUI):
             return
 
         if hasattr(self, '_recover_via_navigation'):
-            log(f"{self.log_prefix} 开始自动导航到入口")
-            if not self._recover_via_navigation("开始执行"):
-                if not from_hotkey:
-                    messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
-                return
-            log(f"{self.log_prefix} 导航成功，准备开始刷取")
-            time.sleep(0.5)
+            entry_modes = getattr(self, "ENTRY_MODES", (ENTRY_MODE_START,))
+            if should_navigate_for_entry(self.log_prefix, entry_modes):
+                log(f"{self.log_prefix} 开始自动导航到入口")
+                if not self._recover_via_navigation("开始执行"):
+                    if not from_hotkey:
+                        messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                    return
+                log(f"{self.log_prefix} 导航成功，准备开始刷取")
+                time.sleep(0.5)
+            else:
+                log(f"{self.log_prefix} 检测到入口按钮，跳过自动导航。")
 
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
@@ -10928,6 +11017,7 @@ def wq70_worker_loop(gui):
 
 class WQ70GUI:
     LOG_PREFIX = WQ70_LOG_PREFIX
+    ENTRY_MODES: Tuple[str, ...] = (ENTRY_MODE_START, ENTRY_MODE_LETTER)
 
     def __init__(self, parent, cfg):
         self.parent = parent
@@ -11141,12 +11231,16 @@ class WQ70GUI:
             auto_loop = self.auto_loop_var.get()
 
         if hasattr(self, '_recover_via_navigation'):
-            log(f"{self.LOG_PREFIX} 开始自动导航到入口")
-            if not self._recover_via_navigation("开始执行"):
-                messagebox.showerror("错误", f"无法导航到{self.LOG_PREFIX}入口")
-                return
-            log(f"{self.LOG_PREFIX} 导航成功，准备开始刷取")
-            time.sleep(0.5)
+            entry_modes = getattr(self, "ENTRY_MODES", (ENTRY_MODE_START,))
+            if should_navigate_for_entry(self.LOG_PREFIX, entry_modes):
+                log(f"{self.LOG_PREFIX} 开始自动导航到入口")
+                if not self._recover_via_navigation("开始执行"):
+                    messagebox.showerror("错误", f"无法导航到{self.LOG_PREFIX}入口")
+                    return
+                log(f"{self.LOG_PREFIX} 导航成功，准备开始刷取")
+                time.sleep(0.5)
+            else:
+                log(f"{self.LOG_PREFIX} 检测到入口按钮，跳过自动导航。")
 
         if not round_running_lock.acquire(blocking=False):
             log(f"{self.LOG_PREFIX} 已有任务在运行，本次忽略。")
@@ -11486,6 +11580,7 @@ class WQ70GUI:
 # ======================================================================
 class HS70AutoGUI:
     LOG_PREFIX = "[70HS]"
+    ENTRY_MODES: Tuple[str, ...] = (ENTRY_MODE_START,)
     MAP_STABILIZE_DELAY = 2.0
     BETWEEN_ROUNDS_DELAY = 2.0
     ENTRY_DELAY = 0.4
@@ -11850,12 +11945,16 @@ class HS70AutoGUI:
             loop_count = max(1, loop_override or 1)
 
         if hasattr(self, '_recover_via_navigation'):
-            log(f"{self.log_prefix} 开始自动导航到入口")
-            if not self._recover_via_navigation("开始执行"):
-                messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
-                return
-            log(f"{self.log_prefix} 导航成功，准备开始刷取")
-            time.sleep(0.5)
+            entry_modes = getattr(self, "ENTRY_MODES", (ENTRY_MODE_START,))
+            if should_navigate_for_entry(self.log_prefix, entry_modes):
+                log(f"{self.log_prefix} 开始自动导航到入口")
+                if not self._recover_via_navigation("开始执行"):
+                    messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                    return
+                log(f"{self.log_prefix} 导航成功，准备开始刷取")
+                time.sleep(0.5)
+            else:
+                log(f"{self.log_prefix} 检测到入口按钮，跳过自动导航。")
 
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
@@ -13200,6 +13299,7 @@ class HS70AutoGUI:
 
 class XP50AutoGUI:
     LOG_PREFIX = "[50XP]"
+    ENTRY_MODES: Tuple[str, ...] = (ENTRY_MODE_START,)
     MAP_STABILIZE_DELAY = 2.0
     BETWEEN_ROUNDS_DELAY = 3.0
     WAIT_POLL_INTERVAL = 0.3
@@ -13602,12 +13702,16 @@ class XP50AutoGUI:
             loop_count = max(1, loop_override or 1)
 
         if hasattr(self, '_recover_via_navigation'):
-            log(f"{self.log_prefix} 开始自动导航到入口")
-            if not self._recover_via_navigation("开始执行"):
-                messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
-                return
-            log(f"{self.log_prefix} 导航成功，准备开始刷取")
-            time.sleep(0.5)
+            entry_modes = getattr(self, "ENTRY_MODES", (ENTRY_MODE_START,))
+            if should_navigate_for_entry(self.log_prefix, entry_modes):
+                log(f"{self.log_prefix} 开始自动导航到入口")
+                if not self._recover_via_navigation("开始执行"):
+                    messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                    return
+                log(f"{self.log_prefix} 导航成功，准备开始刷取")
+                time.sleep(0.5)
+            else:
+                log(f"{self.log_prefix} 检测到入口按钮，跳过自动导航。")
 
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
