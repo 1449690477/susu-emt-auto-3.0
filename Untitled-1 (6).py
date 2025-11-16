@@ -6080,6 +6080,15 @@ class MainGUI:
     def start_worker(self, auto_loop: bool):
         if not self.ensure_macros():
             return
+
+        if hasattr(self, '_recover_via_navigation'):
+            log("[烟花] 开始自动导航到入口")
+            if not self._recover_via_navigation("开始执行"):
+                messagebox.showerror("错误", "无法导航到烟花入口")
+                return
+            log("[烟花] 导航成功")
+            time.sleep(0.5)
+
         if not round_running_lock.acquire(blocking=False):
             log("已有一轮在运行，本次忽略。")
             return
@@ -6583,8 +6592,13 @@ class MultiLetterSelectionMixin:
                 0.8,
             ):
                 self.log(f"{prefix}：未能点击 选择密函.png。")
-                if self._recover_via_navigation("未能点击选择密函按钮"):
+                if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                    "未能点击选择密函按钮"
+                ):
+                    self.log(f"{prefix}：导航恢复成功，重新尝试选择密函。")
+                    time.sleep(1.0)
                     return self._select_letter_sequence(prefix, need_open_button)
+                self.log(f"{prefix}：未能点击 选择密函，放弃本轮。")
                 return False
 
         if self._multi_mode_active():
@@ -7774,6 +7788,15 @@ class FragmentFarmGUI(MultiLetterSelectionMixin):
         if not self._prepare_multi_runtime_cycle():
             return
 
+        if hasattr(self, '_recover_via_navigation'):
+            log(f"{self.log_prefix} 开始自动导航到入口")
+            if not self._recover_via_navigation("开始执行"):
+                if not from_hotkey:
+                    messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                return
+            log(f"{self.log_prefix} 导航成功，准备开始刷取")
+            time.sleep(0.5)
+
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
             return
@@ -8040,8 +8063,24 @@ class FragmentFarmGUI(MultiLetterSelectionMixin):
             20.0,
             0.8,
         ):
-            log(f"{self.log_prefix} 循环重开：未能点击 再次进行.png。")
-            return False
+            log(f"{self.log_prefix} 循环重开：未能点击 再次进行.png，尝试导航恢复。")
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                "循环重开：再次进行失败"
+            ):
+                log(f"{self.log_prefix} 循环重开：恢复成功，重新尝试点击 再次进行。")
+                time.sleep(1.0)
+                if not wait_and_click_template(
+                    BTN_EXPEL_NEXT_WAVE,
+                    f"{self.log_prefix} 循环重开：再次进行按钮",
+                    20.0,
+                    0.8,
+                ):
+                    log(f"{self.log_prefix} 循环重开：恢复后仍未能点击 再次进行.png。")
+                    return False
+                log(f"{self.log_prefix} 循环重开：恢复后点击 再次进行 成功。")
+            else:
+                log(f"{self.log_prefix} 循环重开：再次进行失败且恢复失败。")
+                return False
         if not self._select_letter_sequence(
             f"{self.log_prefix} 循环重开", need_open_button=False
         ):
@@ -8290,8 +8329,24 @@ class FragmentFarmGUI(MultiLetterSelectionMixin):
             20.0,
             0.8,
         ):
-            log(f"{self.log_prefix} 下一波：未能点击 继续挑战.png。")
-            return False
+            log(f"{self.log_prefix} 下一波：未能点击 继续挑战.png，尝试导航恢复。")
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                "下一波：继续挑战失败"
+            ):
+                log(f"{self.log_prefix} 下一波：恢复成功，重新尝试点击 继续挑战。")
+                time.sleep(1.0)
+                if not wait_and_click_template(
+                    BTN_CONTINUE_CHALLENGE,
+                    f"{self.log_prefix} 下一波：继续挑战按钮",
+                    20.0,
+                    0.8,
+                ):
+                    log(f"{self.log_prefix} 下一波：恢复后仍未能点击 继续挑战.png。")
+                    return False
+                log(f"{self.log_prefix} 下一波：恢复后点击 继续挑战 成功。")
+            else:
+                log(f"{self.log_prefix} 下一波：继续挑战失败且恢复失败。")
+                return False
         self._increment_wave_progress()
         if not self._select_letter_sequence(
             f"{self.log_prefix} 下一波", need_open_button=False
@@ -8324,8 +8379,24 @@ class FragmentFarmGUI(MultiLetterSelectionMixin):
             20.0,
             0.8,
         ):
-            log(f"{self.log_prefix} 防卡死：未能点击 再次进行.png。")
-            return False
+            log(f"{self.log_prefix} 防卡死：未能点击 再次进行.png，尝试导航恢复。")
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                "防卡死：再次进行失败"
+            ):
+                log(f"{self.log_prefix} 防卡死：恢复成功，重新尝试点击 再次进行。")
+                time.sleep(1.0)
+                if not wait_and_click_template(
+                    BTN_EXPEL_NEXT_WAVE,
+                    f"{self.log_prefix} 防卡死：再次进行按钮",
+                    20.0,
+                    0.8,
+                ):
+                    log(f"{self.log_prefix} 防卡死：恢复后仍未能点击 再次进行.png。")
+                    return False
+                log(f"{self.log_prefix} 防卡死：恢复后点击 再次进行 成功。")
+            else:
+                log(f"{self.log_prefix} 防卡死：再次进行失败且恢复失败。")
+                return False
         if not self._select_letter_sequence(
             f"{self.log_prefix} 防卡死", need_open_button=False
         ):
@@ -8995,6 +9066,15 @@ class ExpelFragmentGUI(MultiLetterSelectionMixin):
         if not self._prepare_multi_runtime_cycle():
             return
 
+        if hasattr(self, '_recover_via_navigation'):
+            log(f"{self.log_prefix} 开始自动导航到入口")
+            if not self._recover_via_navigation("开始执行"):
+                if not from_hotkey:
+                    messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                return
+            log(f"{self.log_prefix} 导航成功，准备开始刷取")
+            time.sleep(0.5)
+
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
             return
@@ -9165,9 +9245,30 @@ class ExpelFragmentGUI(MultiLetterSelectionMixin):
 
     def _prepare_next_wave(self) -> bool:
         log(f"{self.log_prefix} 下一波：再次进行 → {self.letter_label} → 确认")
-        if not wait_and_click_template(BTN_EXPEL_NEXT_WAVE, f"{self.log_prefix} 下一波：再次进行按钮", 25.0, 0.8):
-            log(f"{self.log_prefix} 下一波：未能点击 再次进行.png。")
-            return False
+        if not wait_and_click_template(
+            BTN_EXPEL_NEXT_WAVE,
+            f"{self.log_prefix} 下一波：再次进行按钮",
+            25.0,
+            0.8,
+        ):
+            log(f"{self.log_prefix} 下一波：未能点击 再次进行.png，尝试导航恢复。")
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                "下一波：再次进行失败"
+            ):
+                log(f"{self.log_prefix} 下一波：恢复成功，重新尝试点击 再次进行。")
+                time.sleep(1.0)
+                if not wait_and_click_template(
+                    BTN_EXPEL_NEXT_WAVE,
+                    f"{self.log_prefix} 下一波：再次进行按钮",
+                    25.0,
+                    0.8,
+                ):
+                    log(f"{self.log_prefix} 下一波：恢复后仍未能点击 再次进行.png。")
+                    return False
+                log(f"{self.log_prefix} 下一波：恢复后点击 再次进行 成功。")
+            else:
+                log(f"{self.log_prefix} 下一波：再次进行失败且恢复失败。")
+                return False
         return self._select_letter_sequence(f"{self.log_prefix} 下一波", need_open_button=False)
 
     def _select_letter_sequence(self, prefix: str, need_open_button: bool) -> bool:
@@ -9348,8 +9449,24 @@ class ExpelFragmentGUI(MultiLetterSelectionMixin):
             25.0,
             0.8,
         ):
-            log(f"{self.log_prefix} 防卡死：未能点击 再次进行.png。")
-            return False
+            log(f"{self.log_prefix} 防卡死：未能点击 再次进行.png，尝试导航恢复。")
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                "防卡死：再次进行失败"
+            ):
+                log(f"{self.log_prefix} 防卡死：恢复成功，重新尝试点击 再次进行。")
+                time.sleep(1.0)
+                if not wait_and_click_template(
+                    BTN_EXPEL_NEXT_WAVE,
+                    f"{self.log_prefix} 防卡死：再次进行按钮",
+                    25.0,
+                    0.8,
+                ):
+                    log(f"{self.log_prefix} 防卡死：恢复后仍未能点击 再次进行.png。")
+                    return False
+                log(f"{self.log_prefix} 防卡死：恢复后点击 再次进行 成功。")
+            else:
+                log(f"{self.log_prefix} 防卡死：再次进行失败且恢复失败。")
+                return False
         return self._select_letter_sequence(f"{self.log_prefix} 防卡死", need_open_button=False)
 
     def _retreat_only(self):
@@ -9966,6 +10083,15 @@ class ClueFarmGUI(FragmentFarmGUI):
         if not self._prepare_multi_runtime_cycle():
             return
 
+        if hasattr(self, '_recover_via_navigation'):
+            log(f"{self.log_prefix} 开始自动导航到入口")
+            if not self._recover_via_navigation("开始执行"):
+                if not from_hotkey:
+                    messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                return
+            log(f"{self.log_prefix} 导航成功，准备开始刷取")
+            time.sleep(0.5)
+
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
             return
@@ -10008,8 +10134,24 @@ class ClueFarmGUI(FragmentFarmGUI):
             25.0,
             0.8,
         ):
-            log(f"{self.log_prefix} 循环重开：未能点击 再次进行.png。")
-            return False
+            log(f"{self.log_prefix} 循环重开：未能点击 再次进行.png，尝试导航恢复。")
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                "循环重开：再次进行失败"
+            ):
+                log(f"{self.log_prefix} 循环重开：恢复成功，重新尝试点击 再次进行。")
+                time.sleep(1.0)
+                if not wait_and_click_template(
+                    BTN_EXPEL_NEXT_WAVE,
+                    f"{self.log_prefix} 循环重开：再次进行按钮",
+                    25.0,
+                    0.8,
+                ):
+                    log(f"{self.log_prefix} 循环重开：恢复后仍未能点击 再次进行.png。")
+                    return False
+                log(f"{self.log_prefix} 循环重开：恢复后点击 再次进行 成功。")
+            else:
+                log(f"{self.log_prefix} 循环重开：再次进行失败且恢复失败。")
+                return False
         time.sleep(0.4)
         if not self._click_single_start_challenge("循环重开：开始挑战"):
             return False
@@ -10024,8 +10166,24 @@ class ClueFarmGUI(FragmentFarmGUI):
             25.0,
             0.8,
         ):
-            log(f"{self.log_prefix} 下一波：未能点击 继续挑战.png。")
-            return False
+            log(f"{self.log_prefix} 下一波：未能点击 继续挑战.png，尝试导航恢复。")
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                "下一波：继续挑战失败"
+            ):
+                log(f"{self.log_prefix} 下一波：恢复成功，重新尝试点击 继续挑战。")
+                time.sleep(1.0)
+                if not wait_and_click_template(
+                    BTN_CONTINUE_CHALLENGE,
+                    f"{self.log_prefix} 下一波：继续挑战按钮",
+                    25.0,
+                    0.8,
+                ):
+                    log(f"{self.log_prefix} 下一波：恢复后仍未能点击 继续挑战.png。")
+                    return False
+                log(f"{self.log_prefix} 下一波：恢复后点击 继续挑战 成功。")
+            else:
+                log(f"{self.log_prefix} 下一波：继续挑战失败且恢复失败。")
+                return False
         time.sleep(0.4)
         return self._click_single_start_challenge("下一波：开始挑战")
 
@@ -10058,8 +10216,24 @@ class ClueFarmGUI(FragmentFarmGUI):
             25.0,
             0.8,
         ):
-            log(f"{self.log_prefix} {context}：未能点击 再次进行.png。")
-            return False
+            log(f"{self.log_prefix} {context}：未能点击 再次进行.png，尝试导航恢复。")
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                f"{context}：再次进行失败"
+            ):
+                log(f"{self.log_prefix} {context}：恢复成功，重新尝试点击 再次进行。")
+                time.sleep(1.0)
+                if not wait_and_click_template(
+                    BTN_EXPEL_NEXT_WAVE,
+                    f"{self.log_prefix} {context}：再次进行按钮",
+                    25.0,
+                    0.8,
+                ):
+                    log(f"{self.log_prefix} {context}：恢复后仍未能点击 再次进行.png。")
+                    return False
+                log(f"{self.log_prefix} {context}：恢复后点击 再次进行 成功。")
+            else:
+                log(f"{self.log_prefix} {context}：再次进行失败且恢复失败。")
+                return False
         time.sleep(0.4)
         return self._click_single_start_challenge(f"{context}：开始挑战")
 
@@ -10314,9 +10488,18 @@ class ClueFarmGUI(FragmentFarmGUI):
         return CLUE_LEVEL_10_TEMPLATE, "10级"
 
     def _perform_mode_switch(self) -> bool:
+        def _recover_on_failure(reason: str) -> bool:
+            if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                f"模式切换失败：{reason}"
+            ):
+                log(f"{self.log_prefix} 模式切换：导航恢复成功（{reason}）。")
+                return True
+            log(f"{self.log_prefix} 模式切换：导航恢复失败（{reason}）。")
+            return False
+
         if not init_game_region():
             log(f"{self.log_prefix} 模式切换：初始化窗口失败。")
-            return False
+            return _recover_on_failure("初始化窗口失败")
 
         exit_clicked = False
         if self._wait_and_click_with_thresholds(
@@ -10339,7 +10522,7 @@ class ClueFarmGUI(FragmentFarmGUI):
 
         if not exit_clicked:
             log(f"{self.log_prefix} 模式切换：未能正常退出委托界面。")
-            return False
+            return _recover_on_failure("未能退出委托界面")
 
         log(
             f"{self.log_prefix} 模式切换：等待索引界面加载（最多 {self.INDEX_WAIT_SECONDS:.0f} 秒）…"
@@ -10358,7 +10541,7 @@ class ClueFarmGUI(FragmentFarmGUI):
             log(
                 f"{self.log_prefix} {self.INDEX_WAIT_SECONDS:.0f} 秒内未检测到 索引.png，模式切换中止。"
             )
-            return False
+            return _recover_on_failure("未检测到索引")
 
         try:
             if keyboard is not None:
@@ -10375,7 +10558,7 @@ class ClueFarmGUI(FragmentFarmGUI):
             0.75,
         ):
             log(f"{self.log_prefix} 模式切换：未能点击 历练.png。")
-            return False
+            return _recover_on_failure("未能点击历练")
         time.sleep(0.6)
         for tpl, desc in (
             (CLUE_ENTRUST_TEMPLATE, "历练 → 委托"),
@@ -10388,7 +10571,7 @@ class ClueFarmGUI(FragmentFarmGUI):
                 0.75,
             ):
                 log(f"{self.log_prefix} 模式切换：未能点击 {tpl}。")
-                return False
+                return _recover_on_failure(f"未能点击{desc}")
             time.sleep(0.6)
 
         current = self.level_var.get()
@@ -10401,7 +10584,7 @@ class ClueFarmGUI(FragmentFarmGUI):
             0.75,
         ):
             log(f"{self.log_prefix} 模式切换：未能选择 {target}级。")
-            return False
+            return _recover_on_failure(f"未能选择{target}级")
         time.sleep(0.4)
         if not wait_and_click_template(
             CLUE_FIRE_TEMPLATE,
@@ -10410,7 +10593,7 @@ class ClueFarmGUI(FragmentFarmGUI):
             0.75,
         ):
             log(f"{self.log_prefix} 模式切换：未能点击 火.png。")
-            return False
+            return _recover_on_failure("未能点击火密函")
 
         self.level_var.set(target)
         log(f"{self.log_prefix} 模式切换完成，当前等级：{target}级。")
@@ -10511,10 +10694,26 @@ def wq70_prepare_next_round(gui) -> bool:
         25.0,
         0.8,
     ):
-        log(f"{WQ70_LOG_PREFIX} 未能找到 再次进行.png")
-        if gui is not None and not worker_stop.is_set():
-            gui.log_panel.record_failure("未能识别 再次进行.png，无法开始下一轮。")
-        return False
+        log(f"{WQ70_LOG_PREFIX} 未能找到 再次进行.png，尝试导航恢复。")
+        recovered = False
+        if gui is not None and hasattr(gui, '_recover_via_navigation') and not worker_stop.is_set():
+            if gui._recover_via_navigation("70武器：再次进行失败"):
+                log(f"{WQ70_LOG_PREFIX} 导航恢复成功，重新尝试点击 再次进行。")
+                time.sleep(1.0)
+                if wait_and_click_template(
+                    BTN_EXPEL_NEXT_WAVE,
+                    f"{WQ70_LOG_PREFIX} 再次进行",
+                    25.0,
+                    0.8,
+                ):
+                    log(f"{WQ70_LOG_PREFIX} 恢复后点击 再次进行 成功。")
+                    recovered = True
+                else:
+                    log(f"{WQ70_LOG_PREFIX} 恢复后仍未能点击 再次进行.png。")
+        if not recovered:
+            if gui is not None and not worker_stop.is_set():
+                gui.log_panel.record_failure("未能识别 再次进行.png，无法开始下一轮。")
+            return False
     time.sleep(0.4)
     if not wait_and_click_template(
         HS_START_TEMPLATE,
@@ -10940,6 +11139,15 @@ class WQ70GUI:
             return
         if auto_loop is None:
             auto_loop = self.auto_loop_var.get()
+
+        if hasattr(self, '_recover_via_navigation'):
+            log(f"{self.LOG_PREFIX} 开始自动导航到入口")
+            if not self._recover_via_navigation("开始执行"):
+                messagebox.showerror("错误", f"无法导航到{self.LOG_PREFIX}入口")
+                return
+            log(f"{self.LOG_PREFIX} 导航成功，准备开始刷取")
+            time.sleep(0.5)
+
         if not round_running_lock.acquire(blocking=False):
             log(f"{self.LOG_PREFIX} 已有任务在运行，本次忽略。")
             return
@@ -11272,18 +11480,6 @@ class WQ70GUI:
                 self._set_no_trick_progress(100.0)
 
         post_to_main_thread(_)
-
-    def _recover_via_navigation(self, reason: str) -> bool:
-        if getattr(self, "_nav_recovering", False):
-            return False
-        self._nav_recovering = True
-        try:
-            if worker_stop.is_set():
-                return False
-            log(f"{self.log_prefix} 导航恢复：{reason}")
-            return navigate_xp50_entry(self.log_prefix)
-        finally:
-            self._nav_recovering = False
 
 # ======================================================================
 #  自动 70 红珠副本
@@ -11653,6 +11849,14 @@ class HS70AutoGUI:
         if not auto_loop:
             loop_count = max(1, loop_override or 1)
 
+        if hasattr(self, '_recover_via_navigation'):
+            log(f"{self.log_prefix} 开始自动导航到入口")
+            if not self._recover_via_navigation("开始执行"):
+                messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                return
+            log(f"{self.log_prefix} 导航成功，准备开始刷取")
+            time.sleep(0.5)
+
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
             return
@@ -12017,7 +12221,22 @@ class HS70AutoGUI:
             self.set_status("点击再次进行…")
             if not self._click_template_from_path(retry_path, "再次进行"):
                 self.set_status("未能点击再次进行。")
-                return False
+                log(f"{self.LOG_PREFIX} 未能点击 再次进行，尝试导航恢复。")
+                if hasattr(self, '_recover_via_navigation') and self._recover_via_navigation(
+                    "70红珠：再次进行失败"
+                ):
+                    log(f"{self.LOG_PREFIX} 恢复成功，重新尝试点击 再次进行。")
+                    time.sleep(1.0)
+                    self.set_status("恢复后重试再次进行…")
+                    if not self._click_template_from_path(retry_path, "再次进行"):
+                        self.set_status("恢复后仍未能点击再次进行。")
+                        log(f"{self.LOG_PREFIX} 恢复后仍未能点击 再次进行。")
+                        return False
+                    log(f"{self.LOG_PREFIX} 恢复后点击 再次进行 成功。")
+                    self.set_status("点击再次进行成功")
+                else:
+                    log(f"{self.LOG_PREFIX} 再次进行失败且恢复失败。")
+                    return False
             self._sleep_with_check(0.35)
             if worker_stop.is_set():
                 return False
@@ -13382,6 +13601,14 @@ class XP50AutoGUI:
         if not auto_loop:
             loop_count = max(1, loop_override or 1)
 
+        if hasattr(self, '_recover_via_navigation'):
+            log(f"{self.log_prefix} 开始自动导航到入口")
+            if not self._recover_via_navigation("开始执行"):
+                messagebox.showerror("错误", f"无法导航到{self.log_prefix}入口")
+                return
+            log(f"{self.log_prefix} 导航成功，准备开始刷取")
+            time.sleep(0.5)
+
         if not round_running_lock.acquire(blocking=False):
             messagebox.showwarning("提示", "当前已有其它任务在运行，请先停止后再试。")
             return
@@ -13738,7 +13965,6 @@ class XP50AutoGUI:
         start_label: str = "再次进入：开始挑战",
         timeout: float = 20.0,
     ) -> bool:
-        prefix = self.log_prefix
         if not self._try_click_retry_button(template_path):
             if not worker_stop.is_set():
                 self.log_panel.record_failure("未识别到 再次进行 按钮，停止当前轮次。")
@@ -13766,9 +13992,24 @@ class XP50AutoGUI:
         timeout: float = 20.0,
     ) -> bool:
         prefix = self.log_prefix
+
+        def _retry_with_navigation() -> bool:
+            if not hasattr(self, '_recover_via_navigation'):
+                return False
+            self.set_status("执行导航恢复…")
+            if self._recover_via_navigation("50经验：再次进行失败"):
+                log(f"{self.log_prefix} 导航恢复成功，重新尝试点击再次进行。")
+                time.sleep(1.0)
+                return self._click_retry_and_start(
+                    template_path, start_label=start_label, timeout=timeout
+                )
+            return False
+
         if self._click_retry_and_start(template_path, start_label=start_label, timeout=timeout):
             return True
         if not allow_recover:
+            if _retry_with_navigation():
+                return True
             if not worker_stop.is_set():
                 self.log_panel.record_failure("多次尝试后仍未识别到再次进行/开始挑战按钮。")
             return False
@@ -13780,6 +14021,8 @@ class XP50AutoGUI:
         if self._click_retry_and_start(
             template_path, start_label=start_label, timeout=timeout
         ):
+            return True
+        if _retry_with_navigation():
             return True
         if not worker_stop.is_set():
             self.log_panel.record_failure("防卡死后依旧未能点击再次进行/开始挑战。")
